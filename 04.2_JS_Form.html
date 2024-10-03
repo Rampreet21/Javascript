@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JS Form</title>
+    <script>
+        function validateForm() {
+            var fname = document.forms["firstForm"]["fname"].value;
+            var fatherName = document.forms["firstForm"]["fatherName"].value;
+            var motherName = document.forms["firstForm"]["motherName"].value;
+            var category = document.forms["firstForm"]["category"].value;
+
+            if (fname == null || fname == "") {
+                alert("Name field can't be empty");
+                return false;
+            }
+            if (fatherName == null || fatherName == "") {
+                alert("Father Name field can't be empty");
+                return false;
+            }
+            if (motherName == null || motherName == "") {
+                alert("Mother Name field can't be empty");
+                return false;
+            }
+            if (category == null || category == "") {
+                alert("Category field can't be empty");
+                return false;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <form name="firstForm" onsubmit="return validateForm()" method="post">
+        Name: <input type="text" name="fname"><br><br>
+        Father Name: <input type="text" name="fatherName"><br><br>
+        Mother Name: <input type="text" name="motherName"><br><br>
+        Category: 
+        <select name="category">
+            <option value="">Select Category</option>
+            <option value="General">General</option>
+            <option value="OBC">OBC</option>
+            <option value="SC">SC</option>
+            <option value="ST">ST</option>
+        </select><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+
+</html>
