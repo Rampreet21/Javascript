@@ -1,0 +1,12 @@
+{
+    "apc.theme": [
+        {
+            "opacity": 0.93,
+            "transparent": true,
+            "backgroundColor": "#00000000",
+            "vibrancy": "ultra-dark"
+        }
+        
+    ],
+    "C_Cpp.default.compilerPath": "C:\\MinGW\\bin\\gcc.exe"
+}
