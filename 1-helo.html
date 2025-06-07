@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 class="wel"> WELCOME</h1>
+    <p id="helo" style="font-size: 40px" >Hello</p>
+</body>
+    <script>
+
+        var obj ={
+            name: 'ram',
+            age: 20,
+            add: 'lehra'
+        }
+
+        console.log(obj);
+
+        var arr = [1, 2, 3, 4, 5];
+        document.write(arr + "<br>");
+
+        for(var i = 0; i < arr.length; i++){
+            document.write(arr[i] + "<br>");
+        }
+
+        arr.forEach(function(element){
+            document.write(element + "<br>");
+        })
+
+        function changb(){
+            document.getElementById("helo").innerHTML = "<b>Hello</b>"; 
+            console.log("1st"); 
+        }
+
+        function changn(){
+            document.getElementById("helo").innerHTML = "Hello";
+            console.log("2st"); 
+        }
+
+       // setInterval(changb, 1500);
+      //  setInterval(changn, 2500);
+
+
+
+    </script>
+</html>

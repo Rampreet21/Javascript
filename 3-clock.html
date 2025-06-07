@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+        crossorigin="anonymous"></script>
+
+    <script>
+        let t;
+        let time;
+        setInterval(function () {
+            t = new Date();
+            time = t.getHours() + ":" + t.getMinutes() + ":" + t.getSeconds();
+            document.getElementById('time').innerHTML = time;
+        }, 1000);
+
+
+    </script>
+    <style>
+        body {
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+
+        #time {
+            font-size: 1.1rem;
+            position: absolute;
+            margin: 0;
+            right: 10px;
+            color: green;
+        }
+
+        .content {
+            max-width: 600px;
+            margin: auto;
+            margin-top: 50px;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #aab7f731;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">CAR</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h3 class="wel"><span id="time"></span> </h3>
+    </div>
+
+
+    <div class="content ">
+        <h4 class="text-center" style="font-size: 20px">Student List</h4>
+        <div class="mb-3">
+            <label for="name" class="form-label">Name:</label>
+            <input type="text" class="form-control" id="name" required>
+        </div>
+        <div class="mb-3">
+            <label for="dis" class="form-label">Address:</label>
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="Leave a comment here" id="address"
+                    style="height: 100px"></textarea>
+                <label for="floatingTextarea2">Address.....</label>
+            </div>
+        </div>
+        <button id="add" class=" my-2 btn btn-primary">ADD</button>
+        <button class="btn btn-primary" onclick="Clear1()">Clear</button>
+
+
+        <table class="table my-4">
+            <thead>
+                <tr>
+                    <th scope="col">Sr.</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+                <tr>
+                    <th scope="row"></th>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <!-- <-- <button class=" btn-primary btn btn-sm">Delete</button> -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+<script>
+
+    onlyupdate = function () {
+        if (localStorage.getItem("itemsJson") == null) {
+            arr = [];
+            localStorage.setItem("itemsJson", JSON.stringify(arr))
+        }
+        else {
+            arrStr = localStorage.getItem("itemsJson");
+            arr = JSON.parse(arrStr);
+            localStorage.setItem("itemsJson", JSON.stringify(arr))
+
+        } let tbody = document.getElementById("tbody");
+        let str = "";
+        arr.forEach(function (element, index) {
+            str += `<tr>
+      <th scope="row">${index + 1}</th>
+      <td>${element[0]}</td>
+      <td>${element[1]}</td>
+        <td>
+            <button class=" btn-primary btn btn-sm" onclick="del(${index})">Delete</button>
+    </tr>`
+        })
+        tbody.innerHTML = str;
+
+    };
+
+
+    update = function () {
+        console.log("Button Clicked")
+        let name = document.getElementById("name").value;
+        let address = document.getElementById("address").value;
+        if (localStorage.getItem("itemsJson") == null) {
+            arr = [];
+            arr.push([name, address]);
+            localStorage.setItem("itemsJson", JSON.stringify(arr))
+        }
+        else {
+            arrStr = localStorage.getItem("itemsJson");
+            arr = JSON.parse(arrStr);
+            arr.push([name, address]);
+            localStorage.setItem("itemsJson", JSON.stringify(arr));
+        }
+        let tbody = document.getElementById("tbody");
+        let str = "";
+        arr.forEach(function (element, index) {
+            str += `<tr>
+      <th scope="row">${index + 1}</th>
+      <td>${element[0]}</td>
+      <td>${element[1]}</td>
+        <td>
+            <button class=" btn-primary btn btn-sm" onclick="del(${index})">Delete</button>
+    </tr>`
+        })
+        tbody.innerHTML = str;
+
+    };
+
+
+    add = document.getElementById("add");
+    add.addEventListener('click', update);
+    onlyupdate();
+
+    function del(itemindex) {
+        arrStr = localStorage.getItem("itemsJson");
+        arr = JSON.parse(arrStr);
+        // deleted
+        arr.splice(itemindex, 1);
+        localStorage.setItem("itemsJson", JSON.stringify(arr))
+        onlyupdate();
+        console.log("Deleted!! :", itemindex);
+ 
+    }
+
+
+    function Clear1() {
+        if (confirm("Clear All DATA!!")) {
+            localStorage.clear();
+            console.log("Clear Button Clicked");
+            document.getElementById("tbody").innerHTML = "";
+        }
+    }
+
+
+</script>
+
+</html>
